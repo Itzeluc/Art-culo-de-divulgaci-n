@@ -3,28 +3,34 @@ import streamlit as st
 # Configuración de la página
 st.set_page_config(page_title="IA y Ansiedad - Artículo Completo", layout="centered")
 
-# Inyección de CSS agresivo para forzar Times New Roman y limpiar los popovers
+# Inyección de CSS ultra-agresivo
 st.markdown("""
     <style>
-    /* Forzar fuente en todos los elementos */
+    /* 1. FORZAR FUENTE TIMES NEW ROMAN EN TODO */
     html, body, [class*="css"], .stApp, p, div, span, h1, h2, h3, h4, h5, h6, li, button {
         font-family: 'Times New Roman', Times, serif !important;
         background-color: #ffffff !important;
         color: #000000 !important;
     }
 
-    /* OCULTAR LOS TEXTOS 'expand_more' y 'expand_less' */
-    span[data-testid="stWidgetLabel"] svg, 
-    span[data-testid="stWidgetLabel"] {
+    /* 2. ELIMINAR LOS ICONOS Y EL TEXTO 'expand_more' DE LOS POPOVERS */
+    /* Oculta el icono de flecha/plus */
+    [data-testid="stPopover"] svg {
         display: none !important;
     }
     
-    /* Ajuste específico para que el botón del popover no muestre iconos de expansión */
-    [data-testid="stPopover"] i {
+    /* Oculta cualquier texto extra que Streamlit ponga junto al label del popover */
+    [data-testid="stPopover"] [data-testid="stMarkdownContainer"] p {
+        margin: 0 !important;
+        display: inline !important;
+    }
+
+    /* Quita el espacio innecesario y el texto de expansión */
+    [data-testid="stPopover"] div[data-testid="stWidgetLabel"] {
         display: none !important;
     }
 
-    /* Título del artículo */
+    /* 3. ESTILO DE LOS TÍTULOS Y CUERPO */
     .titulo-principal {
         font-size: 42px !important;
         font-weight: bold;
@@ -33,7 +39,6 @@ st.markdown("""
         line-height: 1.2;
     }
 
-    /* Frase motivadora */
     .frase-motivadora {
         font-style: italic !important;
         text-align: right;
@@ -42,7 +47,6 @@ st.markdown("""
         color: #1a1a1a;
     }
 
-    /* Cuerpo del artículo */
     .cuerpo-texto {
         font-size: 20px !important;
         text-align: justify;
@@ -50,7 +54,6 @@ st.markdown("""
         margin-bottom: 25px;
     }
 
-    /* Subtítulos */
     .subtitulo {
         font-size: 26px !important;
         font-weight: bold;
@@ -58,8 +61,9 @@ st.markdown("""
         margin-bottom: 15px;
     }
 
-    /* Estilo de los botones de referencia (popovers) */
-    .stButton>button, [data-testid="stPopover"] > button {
+    /* 4. ESTILO DE LOS BOTONES DE REFERENCIA (POPOVERS) */
+    /* Hacemos que el botón parezca un link azul de Times New Roman */
+    [data-testid="stPopover"] > button {
         border: none !important;
         background: none !important;
         padding: 0 !important;
@@ -68,12 +72,19 @@ st.markdown("""
         font-size: 17px !important;
         text-align: left !important;
         box-shadow: none !important;
+        min-height: auto !important;
+        width: auto !important;
     }
     
-    /* Forzar Times New Roman dentro del contenido del popover */
-    [data-testid="stPopoverBody"] div {
+    /* Hover para el link */
+    [data-testid="stPopover"] > button:hover {
+        color: #ff4b4b !important;
+    }
+
+    /* Contenido interno del popover */
+    [data-testid="stPopoverBody"] {
         font-family: 'Times New Roman', Times, serif !important;
-        font-size: 16px !important;
+        border: 1px solid #ddd !important;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -142,6 +153,7 @@ st.markdown("""
 st.markdown("---")
 st.markdown('<div class="subtitulo">Referencias</div>', unsafe_allow_html=True)
 
+# Mismo dataset completo
 refs = [
     ("Camones, V., Cisneros, P. y Quevedo, D. (2025). Del miedo a la confianza: Realidad Virtual y ChatGPT-4 en el tratamiento de la ansiedad social.", 
      "El estudio aborda el impacto de los trastornos de ansiedad social en la calidad de vida y propone una solución tecnológica innovadora que integra la Realidad Virtual (RV) con la API de ChatGPT-4. El objetivo principal es ofrecer un sistema de simulaciones interactivas donde personas con diagnóstico clínico de ansiedad social puedan practicar habilidades en entornos controlados, como reuniones sociales y entrevistas laborales. Tras una intervención de tres semanas con 20 participantes, la investigación demostró una reducción promedio del 20% en los niveles de ansiedad, validada mediante las escalas LSAS y SPIN. Además, el sistema mostró una alta fiabilidad técnica con un 90.58% de éxito en las interacciones y una recepción positiva en términos de usabilidad y calidad de interfaz."),
