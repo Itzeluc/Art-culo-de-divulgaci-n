@@ -1,85 +1,96 @@
 import streamlit as st
-import pandas as pd
-import numpy as np
-import plotly.express as px
 
-# --- CONFIGURACIÓN DE LA PÁGINA ---
-st.set_page_config(
-    page_title="Dashboard de Análisis Comercial",
-    page_icon="📈",
-    layout="wide"
-)
+# Configuración de la página
+st.set_page_config(page_title="Artículo: IA y Ansiedad", layout="centered")
 
-# --- GENERACIÓN DE DATOS (Simulando un archivo de ventas) ---
-@st.cache_data # Esto hace que la app sea mucho más rápida
-def cargar_datos():
-    # Creamos datos ficticios para que el dashboard funcione de inmediato
-    np.random.seed(42)
-    fechas = pd.date_range(start="2025-01-01", periods=200)
-    datos = pd.DataFrame({
-        "Fecha": np.random.choice(fechas, 500),
-        "Ventas": np.random.uniform(50, 1000, size=500),
-        "Categoría": np.random.choice(['Electrónica', 'Hogar', 'Moda', 'Deportes'], 500),
-        "Canal": np.random.choice(['Online', 'Tienda Física'], 500)
-    })
-    return datos.sort_values("Fecha")
+# Inyección de CSS para forzar el estilo elegante y la fuente Times New Roman
+st.markdown("""
+    <style>
+    /* Importar o definir la fuente global */
+    html, body, [class*="css"] {
+        font-family: "Times New Roman", Times, serif;
+        background-color: #ffffff;
+    }
+    
+    /* Fondo blanco para la aplicación principal */
+    .stApp {
+        background-color: #ffffff;
+    }
 
-df = cargar_datos()
+    /* Estilo para el Título (Grande y en Times New Roman) */
+    .titulo-principal {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 48px;
+        font-weight: bold;
+        text-align: center;
+        color: #000000;
+        line-height: 1.2;
+        padding-top: 20px;
+    }
 
-# --- BARRA LATERAL (FILTROS) ---
-st.sidebar.image("https://www.streamlit.io/images/brand/streamlit-logo-secondary-colormark-darktext.png", width=200)
-st.sidebar.title("Filtros de Control")
+    /* Frase Motivadora (Derecha, Cursiva, Times New Roman) */
+    .frase-motivadora {
+        font-family: "Times New Roman", Times, serif;
+        font-style: italic;
+        text-align: right;
+        font-size: 20px;
+        color: #444444;
+        margin: 40px 0;
+        border-right: 4px solid #000;
+        padding-right: 15px;
+    }
 
-# Filtro por Categoría
-categorias = st.sidebar.multiselect(
-    "Selecciona Categorías:",
-    options=df["Categoría"].unique(),
-    default=df["Categoría"].unique()
-)
+    /* Cuerpo del Artículo (Mediano, Elegante) */
+    .cuerpo-texto {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 20px;
+        text-align: justify;
+        color: #1a1a1a;
+        line-height: 1.6;
+    }
 
-# Filtro por Canal
-canales = st.sidebar.radio("Canal de Venta:", ["Todos", "Online", "Tienda Física"])
+    /* Subtítulos */
+    .subtitulo {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 26px;
+        font-weight: bold;
+        margin-top: 30px;
+        color: #000000;
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
-# Aplicar filtros
-df_filtrado = df[df["Categoría"].isin(categorias)]
-if canales != "Todos":
-    df_filtrado = df_filtrado[df_filtrado["Canal"] == canales]
+# --- CONTENIDO DEL DASHBOARD ---
 
-# --- CUERPO PRINCIPAL ---
-st.title("🚀 Panel de Control de Ventas 2026")
+# Título del artículo
+st.markdown('<div class="titulo-principal">¿Un psicólogo en tu bolsillo? Luces y sombras de la IA generativa frente a la ansiedad</div>', unsafe_allow_html=True)
+
+# Frase motivadora
+st.markdown('<div class="frase-motivadora">Tu mente es el territorio y la innovación la herramienta; el verdadero poder de cambio siempre reside en la valentía de conocerte a ti mismo.</div>', unsafe_allow_html=True)
+
+# Cuerpo del artículo
+st.markdown("""
+<div class="cuerpo-texto">
+    En la última década, la ansiedad ha dejado de ser una preocupación individual para convertirse en un desafío de salud pública global. 
+    Se ha consolidado como una de las principales causas de discapacidad y pérdida de productividad en la población activa. 
+    A pesar de que existen tratamientos efectivos, factores como el alto costo de la terapia, la falta de profesionales en zonas rurales 
+    y el estigma social impiden que muchas personas reciban ayuda oportuna. En este escenario, la Inteligencia Artificial (IA) generativa 
+    surge como una herramienta disruptiva que promete democratizar el cuidado de la salud mental. Pero, ¿qué tan sólida es esta promesa y 
+    cuáles son sus riesgos?
+</div>
+""", unsafe_allow_html=True)
+
+# Subtítulo y continuación
+st.markdown('<div class="subtitulo">El potencial: ¿Por qué la IA funciona para la ansiedad?</div>', unsafe_allow_html=True)
+
+st.markdown("""
+<div class="cuerpo-texto">
+    La mayoría de los chatbots actuales no operan al azar; su sustento teórico es la <b>Terapia Cognitivo-Conductual (TCC)</b>. 
+    Esta terapia se centra en identificar y reestructurar patrones de pensamiento catastróficos, algo que, por su naturaleza protocolizada, 
+    es ideal para ser traducido a algoritmos de respuesta.
+</div>
+""", unsafe_allow_html=True)
+
+# Pie de página elegante
 st.markdown("---")
-
-# KPIs principales
-m1, m2, m3 = st.columns(3)
-m1.metric("Ventas Totales", f"${df_filtrado['Ventas'].sum():,.2f}", "+5.2%")
-m2.metric("Ticket Promedio", f"${df_filtrado['Ventas'].mean():,.2f}")
-m3.metric("N° Transacciones", len(df_filtrado))
-
-st.markdown("### Visualización de Tendencias")
-
-# Gráficos con Plotly
-col_a, col_b = st.columns([2, 1])
-
-with col_a:
-    # Agrupar ventas por fecha para el gráfico de líneas
-    ventas_diarias = df_filtrado.groupby("Fecha")["Ventas"].sum().reset_index()
-    fig_line = px.line(
-        ventas_diarias, x="Fecha", y="Ventas", 
-        title="Evolución de Ventas Diarias",
-        template="plotly_white",
-        line_shape="spline"
-    )
-    st.plotly_chart(fig_line, use_container_width=True)
-
-with col_b:
-    # Gráfico de pastel por Categoría
-    fig_pie = px.pie(
-        df_filtrado, values="Ventas", names="Categoría", 
-        title="Distribución por Categoría",
-        hole=0.4
-    )
-    st.plotly_chart(fig_pie, use_container_width=True)
-
-# Tabla de Datos inferior
-st.markdown("### Detalle de Operaciones")
-st.dataframe(df_filtrado.head(50), use_container_width=True)
+st.caption("Dashboard de Divulgación Científica | Creado con Streamlit")
