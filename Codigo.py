@@ -3,26 +3,23 @@ import streamlit as st
 # Configuración de la página
 st.set_page_config(page_title="IA y Ansiedad - Artículo Completo", layout="centered")
 
-# CSS Definitivo para Times New Roman y limpieza total de la interfaz
+# CSS para forzar Times New Roman, fondo blanco y eliminar textos de sistema
 st.markdown("""
     <style>
-    /* 1. FORZAR FUENTE EN TODO EL DOCUMENTO */
+    /* Forzar fuente en toda la aplicación */
     html, body, [class*="css"], .stApp, p, div, span, h1, h2, h3, h4, h5, h6, li, button {
         font-family: 'Times New Roman', Times, serif !important;
         background-color: #ffffff !important;
         color: #000000 !important;
     }
 
-    /* 2. ELIMINAR CUALQUIER TEXTO DE ICONOS (expand_more/less) */
-    span[data-testid="stWidgetLabel"] {
+    /* Ocultar iconos y etiquetas automáticas de Streamlit para evitar "expand_more" */
+    [data-testid="stPopover"] svg, 
+    [data-testid="stWidgetLabel"] {
         display: none !important;
     }
-    
-    button[data-testid="stBaseButton-secondary"] p {
-        font-family: 'Times New Roman', Times, serif !important;
-    }
 
-    /* 3. TÍTULOS Y CUERPO */
+    /* Estilo del título principal */
     .titulo-principal {
         font-size: 42px !important;
         font-weight: bold;
@@ -31,6 +28,7 @@ st.markdown("""
         line-height: 1.2;
     }
 
+    /* Frase motivadora alineada a la derecha */
     .frase-motivadora {
         font-style: italic !important;
         text-align: right;
@@ -39,6 +37,7 @@ st.markdown("""
         color: #1a1a1a;
     }
 
+    /* Cuerpo del texto con diseño elegante y tamaño mediano */
     .cuerpo-texto {
         font-size: 20px !important;
         text-align: justify;
@@ -46,6 +45,7 @@ st.markdown("""
         margin-bottom: 25px;
     }
 
+    /* Estilo de los subtítulos */
     .subtitulo {
         font-size: 26px !important;
         font-weight: bold;
@@ -53,31 +53,43 @@ st.markdown("""
         margin-bottom: 15px;
     }
 
-    /* 4. ESTILO PARA LAS REFERENCIAS */
-    .referencia-texto {
+    /* Formato para las referencias bibliográficas */
+    .referencia-apa {
         font-size: 17px !important;
-        margin-top: 20px;
+        margin-top: 25px;
         margin-bottom: 5px;
         line-height: 1.4;
     }
-    
-    /* Ajuste para que el popover sea discreto */
+
+    /* Estilo del botón "Ver resumen" para que sea elegante y sin iconos */
     [data-testid="stPopover"] > button {
-        border: 1px solid #ccc !important;
-        background-color: #f9f9f9 !important;
-        font-size: 14px !important;
-        padding: 2px 10px !important;
-        border-radius: 4px !important;
+        border: 1px solid #000000 !important;
+        background-color: #ffffff !important;
+        font-family: 'Times New Roman', Times, serif !important;
+        font-size: 15px !important;
+        padding: 5px 15px !important;
+        border-radius: 0px !important;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    /* Contenido interno del cuadro de resumen */
+    [data-testid="stPopoverBody"] {
+        border: 2px solid #000000 !important;
+        padding: 20px !important;
     }
     </style>
     """, unsafe_allow_html=True)
 
-# --- CONTENIDO ÍNTEGRO ---
+# --- INICIO DEL CONTENIDO DEL ARTÍCULO ---
 
+# Título [cite: 3, 4]
 st.markdown('<div class="titulo-principal">¿Un psicólogo en tu bolsillo? Luces y sombras de la IA generativa frente a la ansiedad</div>', unsafe_allow_html=True)
 
+# Frase Motivadora [cite: 5, 6, 7]
 st.markdown('<div class="frase-motivadora">Tu mente es el territorio y la innovación la herramienta; el verdadero poder de cambio siempre reside en la valentía de conocerte a ti mismo.</div>', unsafe_allow_html=True)
 
+# Introducción [cite: 11, 12, 13, 14, 15]
 st.markdown("""
 <div class="cuerpo-texto">
     En la última década, la ansiedad ha dejado de ser una preocupación individual para convertirse en un desafío de salud pública global. 
@@ -88,6 +100,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+# El potencial [cite: 16, 17, 18]
 st.markdown('<div class="subtitulo">El potencial: ¿Por qué la IA funciona para la ansiedad?</div>', unsafe_allow_html=True)
 st.markdown("""
 <div class="cuerpo-texto">
@@ -96,6 +109,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+# Las ventajas [cite: 19, 20, 21, 22, 23, 24, 25, 26]
 st.markdown('<div class="subtitulo">Las ventajas de un "entrenador de bolsillo"</div>', unsafe_allow_html=True)
 st.markdown("""
 <div class="cuerpo-texto">
@@ -108,6 +122,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+# Riesgos [cite: 27, 28, 29, 30, 31, 32, 33, 34, 35, 36]
 st.markdown('<div class="subtitulo">La otra cara de la moneda: Riesgos y desafíos éticos</div>', unsafe_allow_html=True)
 st.markdown("""
 <div class="cuerpo-texto">
@@ -117,6 +132,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+# Modelo Híbrido [cite: 37, 38, 39, 40, 41]
 st.markdown('<div class="subtitulo">El Modelo de Cuidado Escalonado: Una solución híbrida</div>', unsafe_allow_html=True)
 st.markdown("""
 <div class="cuerpo-texto">
@@ -126,6 +142,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+# Conclusión [cite: 42, 43, 44, 45]
 st.markdown('<div class="subtitulo">Conclusión</div>', unsafe_allow_html=True)
 st.markdown("""
 <div class="cuerpo-texto">
@@ -133,27 +150,44 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+# --- SECCIÓN DE REFERENCIAS --- [cite: 48]
 st.markdown("---")
 st.markdown('<div class="subtitulo">Referencias</div>', unsafe_allow_html=True)
 
-# Dataset íntegro
-refs = [
-    ("Camones, V., Cisneros, P. y Quevedo, D. (2025). Del miedo a la confianza: Realidad Virtual y ChatGPT-4 en el tratamiento de la ansiedad social.", "El estudio aborda el impacto de los trastornos de ansiedad social en la calidad de vida y propone una solución tecnológica innovadora que integra la Realidad Virtual (RV) con la API de ChatGPT-4. El objetivo principal es ofrecer un sistema de simulaciones interactivas donde personas con diagnóstico clínico de ansiedad social puedan practicar habilidades en entornos controlados, como reuniones sociales y entrevistas laborales. Tras una intervención de tres semanas con 20 participantes, la investigación demostró una reducción promedio del 20% en los niveles de ansiedad, validada mediante las escalas LSAS y SPIN. Además, el sistema mostró una alta fiabilidad técnica con un 90.58% de éxito en las interacciones y una recepción positiva en términos de usabilidad y calidad de interfaz."),
-    ("Farzan, M., Ebrahimi, H., Pourali, M. y Sabeti, F. (2024). Artificial Intelligence-Powered Cognitive Behavioral Therapy Chatbots, a Systematic Review.", "Esta revisión sistemática tiene como objetivo identificar las características distintivas y la eficacia terapéutica de los chatbots de inteligencia artificial basados en la Terapia Cognitivo-Conductual (TCC-IA), como Woebot, Wysa y Youper. El estudio analiza diez investigaciones empíricas publicadas entre 2017 y 2024 para determinar cómo estas herramientas impactan en los síntomas de depresión, ansiedad y otros trastornos de salud mental, además de evaluar el nivel de compromiso y satisfacción del usuario. Los resultados indican mejoras significativas en la reducción de síntomas, destacando a Woebot por su alta capacidad de vinculación y a Wysa por su eficacia en contextos de depresión severa y dolor crónico, estableciendo que estas herramientas son intervenciones digitales prometedoras para cerrar la brecha en el acceso a la atención psicológica."),
-    ("Ferreira, D. S., et al. (2024). Uso do chatbot no enfrentamento da ansiedade: uma revisão integrativa.", "Esta investigación consiste en una revisión integrativa de la literatura que explora cómo el uso de chatbots puede auxiliar en el manejo y enfrentamiento de la ansiedad. El estudio sintetiza hallazgos de diversas publicaciones científicas para identificar las principales funcionalidades de estos agentes conversacionales, como el soporte emocional 24/7 y la aplicación de ejercicios prácticos. Los resultados indican que los chatbots son herramientas eficaces para reducir los síntomas de ansiedad y mejorar la autoconciencia emocional de los usuarios, destacándose como una alternativa tecnológica viable para democratizar el acceso al apoyo en salud mental, especialmente en contextos donde la atención presencial es limitada o costosa."),
-    ("Heinz, M. V., et al. (2025). Randomized Trial of a Generative AI Chatbot for Mental Health Treatment.", "Este estudio presenta los resultados de un ensayo controlado aleatorio (RCT) a nivel nacional diseñado para evaluar la eficacia de Therabot, un chatbot de inteligencia artificial generativa (Gen-AI) ajustado por expertos para el tratamiento de la salud mental. La investigación se centró en 210 adultos con síntomas clínicamente significativos de trastorno depresivo mayor, trastorno de ansiedad generalizada o riesgo elevado de trastornos de la conducta alimentaria. Durante una intervención de cuatro semanas, los investigadores compararon a Therabot frente a un grupo de control en lista de espera. Los hallazgos principales revelaron que el uso del chatbot generó reducciones significativas y con un tamaño de efecto moderado en los síntomas de depresión, ansiedad y trastornos alimentarios, además de registrar niveles de compromiso y retención del usuario excepcionalmente altos en comparación con otras herramientas digitales."),
-    ("Joshi, A. C., Ghogare, A. S. y Madavi, P. B. (2025). Systematic review of artificial intelligence enabled psychological interventions for depression and anxiety.", "Esta revisión sistemática examina el papel de los chatbots impulsados por inteligencia artificial como herramientas de intervención psicológica para abordar la depresión y la ansiedad a nivel global. El estudio destaca cómo la IA ha emergido para superar barreras tradicionales en la salud mental, tales como el alto costo de los tratamientos, las limitaciones geográficas y el estigma social. Al analizar diversas plataformas conversacionales, la investigación demuestra que estas tecnologías facilitan la detección temprana y ofrecen apoyo terapéutico personalizado. Los hallazgos sugieren que, aunque estas herramientas son altamente efectivas para reducir los síntomas y mejorar la accesibilidad, su éxito depende de la integración de algoritmos avanzados que permitan una interacción más humana y segura."),
-    ("Klos, M. C., et al. (2021). Artificial Intelligence-Based Chatbot for Anxiety and Depression in University Students.", "Este estudio consistió en un ensayo controlado aleatorio piloto diseñado para evaluar la viabilidad, aceptabilidad y el impacto potencial de un chatbot de inteligencia artificial llamado Tess en la salud mental de estudiantes universitarios argentinos. La investigación comparó el uso del chatbot frente a un grupo de control que utilizó un libro de psicoeducación sobre la depresión durante un periodo de ocho semanas. Aunque no se encontraron diferencias significativas entre ambos grupos en cuanto a la reducción general de síntomas de depresión y ansiedad, el grupo que utilizó a Tess mostró una disminución estadísticamente significativa en sus niveles de ansiedad dentro de su propio grupo. Los resultados sugieren que el chatbot es una herramienta usable y aceptada por la población estudiantil, ofreciendo una vía prometedora para expandir el acceso a cuidados psicológicos en América Latina."),
-    ("Lima Neto, J. G. F. y Castro, A. F. C. (2025). Eficácia de programas de inteligência artificial com aplicação de chatbots no auxílio ao cuidado a saúde mental.", "La investigación analiza cómo los trastornos de salud mental, especialmente la ansiedad y la depresión, afectan de manera global la calidad de vida y el desempeño laboral. Ante el aumento en el uso de dispositivos móviles, el estudio evalúa la efectividad de los chatbots basados en Inteligencia Artificial (IA) como herramientas de apoyo emocional. Mediante una revisión sistemática, se examinaron seis intervenciones tecnológicas específicas concluyendo que estas herramientas son eficaces para reducir síntomas psicológicos y promover el bienestar. No obstante, el estudio subraya que la relevancia de estas tecnologías reside en su capacidad para complementar el cuidado tradicional."),
-    ("Manole, A., et al. (2024). An Exploratory Investigation of Chatbot Applications in Anxiety Management.", "Esta investigación realiza una exploración exhaustiva sobre cómo las aplicaciones de chatbots, impulsadas por inteligencia artificial avanzada, están transformando el manejo de la ansiedad a través de intervenciones personalizadas. El estudio examina la evolución de estos agentes conversacionales, desde sistemas basados en reglas simples hasta los actuales modelos de lenguaje de gran tamaño (LLM), analizando su capacidad para ofrecer soporte terapéutico accesible y adaptativo. Los autores destacan que, mediante la integración de técnicas como el procesamiento de lenguaje natural y el análisis de sentimientos, los chatbots pueden identificar patrones emocionales específicos en los usuarios."),
-    ("Pavlopoulos, A., Rachiotis, T. y Maglogiannis, I. (2024). An Overview of Tools and Technologies for Anxiety and Depression Management Using AI.", "Este estudio consiste en una revisión exhaustiva de la literatura académica de los últimos cinco años para evaluar la efectividad y utilidad de las aplicaciones de Inteligencia Artificial (IA) en el manejo de la ansiedad y la depresión. El trabajo identifica y categoriza diversas herramientas como chatbots terapéuticos, aplicaciones móviles, dispositivos vestibles (wearables) y modelos de lenguaje de gran tamaño (LLMs), analizando sus beneficios en términos de accesibilidad y personalización del tratamiento.")
+# Lista de referencias y resúmenes extraídos íntegramente del documento
+referencias_data = [
+    ("Camones, V., Cisneros, P. y Quevedo, D. (2025). Del miedo a la confianza: Realidad Virtual y ChatGPT-4 en el tratamiento de la ansiedad social.", 
+     "El estudio aborda el impacto de los trastornos de ansiedad social en la calidad de vida y propone una solución tecnológica innovadora que integra la Realidad Virtual (RV) con la API de ChatGPT-4. El objetivo principal es ofrecer un sistema de simulaciones interactivas donde personas con diagnóstico clínico de ansiedad social puedan practicar habilidades en entornos controlados. Tras una intervención de tres semanas con 20 participantes, demostró una reducción promedio del 20% en los niveles de ansiedad."),
+    
+    ("Farzan, M., Ebrahimi, H., Pourali, M. y Sabeti, F. (2024). Artificial Intelligence-Powered Cognitive Behavioral Therapy Chatbots, a Systematic Review.", 
+     "Esta revisión sistemática identifica las características distintivas y la eficacia terapéutica de chatbots basados en la Terapia Cognitivo-Conductual (TCC-IA), como Woebot, Wysa y Youper. Analiza diez investigaciones para determinar cómo impactan en los síntomas de depresión y ansiedad, destacando mejoras significativas y estableciendo estas herramientas como prometedoras para cerrar la brecha en el acceso a la atención psicológica."),
+    
+    ("Ferreira, D. S., et al. (2024). Uso do chatbot no enfrentamento da ansiedade: uma revisão integrativa.", 
+     "Esta revisión integrativa explora cómo los chatbots auxilian en el manejo de la ansiedad, sintetizando hallazgos sobre soporte emocional 24/7 y ejercicios prácticos. Indica que son eficaces para reducir síntomas y mejorar la autoconciencia emocional, democratizando el acceso al apoyo en salud mental en contextos donde la atención presencial es limitada."),
+    
+    ("Heinz, M. V., et al. (2025). Randomized Trial of a Generative AI Chatbot for Mental Health Treatment.", 
+     "Ensayo controlado aleatorio diseñado para evaluar Therabot, un chatbot de IA generativa ajustado por expertos. En un estudio con 210 adultos, reveló reducciones significativas en síntomas de depresión y ansiedad con un tamaño de efecto moderado tras cuatro semanas de uso, registrando altos niveles de compromiso."),
+    
+    ("Joshi, A. C., Ghogare, A. S. y Madavi, P. B. (2025). Systematic review of artificial intelligence enabled psychological interventions for depression and anxiety.", 
+     "Revisión sistemática sobre el papel de los chatbots de IA para abordar la depresión y ansiedad. Destaca cómo la IA supera barreras como el alto costo y el estigma social. Demuestra que estas tecnologías facilitan la detección temprana y ofrecen apoyo personalizado, supeditado a la integración de algoritmos avanzados."),
+    
+    ("Klos, M. C., et al. (2021). Artificial Intelligence-Based Chatbot for Anxiety and Depression in University Students.", 
+     "Ensayo piloto para evaluar el chatbot Tess en estudiantes universitarios. Aunque no hubo diferencias generales masivas frente al grupo de control, el grupo de Tess mostró una disminución estadísticamente significativa en sus propios niveles de ansiedad, sugiriendo que es una herramienta aceptada en la población estudiantil."),
+    
+    ("Lima Neto, J. G. F. y Castro, A. F. C. (2025). Eficácia de programas de inteligência artificial com aplicação de chatbots no auxílio ao cuidado a saúde mental.", 
+     "Evalúa la efectividad de chatbots como Tess, TeO y AirHeart mediante una revisión sistemática. Concluye que son eficaces para reducir síntomas psicológicos y promover el bienestar, subrayando su capacidad para complementar el cuidado tradicional."),
+    
+    ("Manole, A., et al. (2024). An Exploratory Investigation of Chatbot Applications in Anxiety Management.", 
+     "Investigación sobre cómo los chatbots LLM transforman el manejo de la ansiedad mediante intervenciones personalizadas. Destaca que la identificación de patrones emocionales mediante procesamiento de lenguaje natural reduce significativamente las barreras de costo y disponibilidad."),
+    
+    ("Pavlopoulos, A., Rachiotis, T. y Maglogiannis, I. (2024). An Overview of Tools and Technologies for Anxiety and Depression Management Using AI.", 
+     "Revisión de la literatura de los últimos cinco años sobre IA en salud mental. Categoriza herramientas como wearables y LLMs, concluyendo que muestran una promesa significativa para complementar tratamientos tradicionales y reducir la carga de trabajo de los profesionales.")
 ]
 
-for cita, resumen in refs:
-    # Mostramos la cita como texto normal
-    st.markdown(f'<div class="referencia-texto">{cita}</div>', unsafe_allow_html=True)
-    # Ponemos el popover debajo con un label genérico que el CSS ocultará
+# Renderizado de referencias con botón de resumen limpio [cite: 46, 47]
+for apa, resumen in referencias_data:
+    st.markdown(f'<div class="referencia-apa">{apa}</div>', unsafe_allow_html=True)
     with st.popover("Ver resumen"):
-        st.write(resumen)
+        st.markdown(f'<div style="font-family: \'Times New Roman\', serif; font-size: 18px; text-align: justify;">{resumen}</div>', unsafe_allow_html=True)
 
 st.markdown("<br><br>", unsafe_allow_html=True)
